@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+
+    <div class="container">
+        
+        <!-- header -->
+        <div class="row">
+            <div class="col-xs-12 text-center">
+
+                <h1><em>Note</em> to Self</h1>
+            </div>
+        </div>
+        <!-- navbar -->
+            <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                      <!-- Brand and toggle get grouped for better mobile display -->
+                      <div class="navbar-header">
+                        
+        
+                      </div>
+                  
+                      <!-- Collect the nav links, forms, and other content for toggling -->
+                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        
+                        <form class="navbar-form navbar-left">
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email">
+                            <input type="text" class="form-control" placeholder="Password">
+                          </div>
+                          <button type="submit" class="btn btn-default">Log In</button>
+                          <button  onClick=""class="btn btn-default" type="button">Register</button>
+                        </form>
+                        <ul class="nav navbar-nav navbar-right">
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Home</a></li>
+                              <li><a href="#">Profile Page</a></li>
+                              <li><a href="#">Favorites</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                  </nav>
+
+                  <!-- register page -->
+        <div class="row">
+            <div  id="register" class="col-xs-8 register hidden">
+                    <form id="registration"class="form" onsubmit="">
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="text" name="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="displayName">Display Name:</label>
+                                <input type="text" name="displayName" class="form-control" placeholder="display name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="text" name="password" class="form-control" placeholder="password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reEnterPassword">Re-enter Password:</label>
+                                <input type="text" name="reEnterPassword" class="form-control" placeholder="reEnterPassword">
+                            </div>
+                       
+                            <div class="form-group">
+                                <button class="btn btn-success" type="submit">Complete Registration</button>
+                            </div>
+                        </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </div>
+<!-- NAV BAR
+    left side, 2 input fields for un and pass
+    right side, name of the site "some name"
+-->
+<!-- side menu bar, has Home button, Profile button, Favorites button with onClicks -->
+
+<!-- login/register 
+    two text inputs in nav bar for existing users in navbar
+    on submit, getrequest from server
+    on login takes to posts pages.
+    
+    
+    button for new account
+    pops up new window
+    creates form with Email, userName/displayName, Password, retype password. 
+    submit button. on submit, its a post request to server
+    takes to profile page to set up image and lyrics favorite bands etc.
+
+
+-->
+
+<!-- Profile page
+
+
+
+
+-->
+
+    
+
+    <script src="app/controllers/home-service.js"></script>
+    <script src="app/controllers/profile-service.js"></script>
+    <script src="app/controllers/profile-controller.js"></script>
+    <script src="app/controllers/home-controller.js"></script>
+    <script src="public/init.js"></script>
+</body>
+</html>
