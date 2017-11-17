@@ -20,11 +20,11 @@ server.use(bp.urlencoded({extended: true}))
 server.use(sessions)
 
 ///register routes
-server.use(postingRoutes)
-server.use(Authenticate)
 server.use(userRoutes)
+server.use(postingRoutes)
 server.use(commentRoutes)
 
+server.use(Authenticate)
 
 function Authenticate(req,res,next){
     if(!req.session.uid){

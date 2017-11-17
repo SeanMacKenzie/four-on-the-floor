@@ -1,3 +1,4 @@
+var Comments = require('../models/comment')
 var Postings = require('../models/posting')
 var router = require('express').Router()
 var Users = require('../models/user')
@@ -60,6 +61,20 @@ router.put('/api/postings/:id', (req, res, next) => {
 
 
 router.delete('/api/postings/:id', (req, res, next) => {
+        Promise.all([
+          Comments.find({ ObjectId }),
+          Postings.find({})
+          
+        ])
+          .then(results => res.send({
+            burgers: results[0],
+            drinks: results[1],
+            
+          }))
+
+//call .delete comments from post id 
+//Comments.findByIdAndRemove(req.params.postingId)
+
     Postings.findByIdAndRemove(req.params.id)
         .then(() => {
             res.send({ message: 'So much for that posting' })
