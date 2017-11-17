@@ -34,5 +34,5 @@ function Authenticate(req,res,next){
 }
 
 server.listen(port, function(){
-    console.log('Serving burgers on port: ', port)
+    console.log('Ready to rock on port: ', port)
 })

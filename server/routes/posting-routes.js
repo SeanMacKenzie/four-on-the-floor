@@ -61,27 +61,21 @@ router.put('/api/postings/:id', (req, res, next) => {
 
 
 router.delete('/api/postings/:id', (req, res, next) => {
-        Promise.all([
-          Comments.find({ ObjectId }),
-          Postings.find({})
-          
-        ])
-          .then(results => res.send({
-            burgers: results[0],
-            drinks: results[1],
-            
-          }))
-
-//call .delete comments from post id 
-//Comments.findByIdAndRemove(req.params.postingId)
-
-    Postings.findByIdAndRemove(req.params.id)
-        .then(() => {
-            res.send({ message: 'So much for that posting' })
+    //if broken, userId.toString()
+    Postings.findById(req.params.id)
+        .then(posting => {
+            if (posting.userId.toString() == req.session.uid) {
+                posting.remove()
+                res.send({ message: 'So much for that posting' })
+            }
+            next()
         })
         .catch(err => {
             res.status(400).send({ Error: err })
         })
+   
+
+
 })
 
 function handleResponse(action, data, error) {
