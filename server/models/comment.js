@@ -2,10 +2,11 @@ var mongoose = require('mongoose')
 var ObjectId = mongoose.SchemaTypes.ObjectId
 // WHAT IS AN AUTO
 var schema = new mongoose.Schema({
-    img: { type: String, default: '//placehold.it/200x200' },
-    title: { type: String, required: true },
+    
+    comment: { type: String, required: true },
+    upvotes: { type: Number},
     userId: { type: ObjectId, required: true, ref: 'User' },
-
+    postId: { type: ObjectId, required: true, ref: 'Posting' }
 });
 
-module.exports = mongoose.model('Post', schema);
+module.exports = mongoose.model('Comment', schema);

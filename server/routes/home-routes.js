@@ -1,18 +1,17 @@
 var router = require('express').Router()
-var Posts = require('../models/post')
-var Comments = require('../models/comment')
+var Postings = require('../models/posting')
 
 
 
-router
-  .get('/api/menu', (req, res, next) => {
+
+router.get('/api/home', (req, res, next) => {
     Promise.all([
-      Posts.find({}),
-      Comments.find({}),
+      Postings.find({}),
+      
     ])
       .then(results => res.send({
-        posts: results[0],
-        comments: results[1],
+        postings: results[0],
+        
       }))
       .catch()
     //     Posts.find({})

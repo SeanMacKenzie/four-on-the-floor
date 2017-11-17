@@ -1,5 +1,6 @@
 var Comments = require('../models/comment')
 var router = require('express').Router()
+var Users = require('../models/user')
 
 
 router.get('/api/comments', (req, res, next)=>{
@@ -12,17 +13,26 @@ router.get('/api/comments', (req, res, next)=>{
         })
 })
 
-router.get('/api/comments/:id', (req, res, next)=>{
+router.get('/api/comments/:id', (req, res, next) => {
     Comments.findById(req.params.id)
-        .then(comment=>{
+        .then(comment => {
             res.send(comment)
-        })
-        .catch(err =>{
-            res.status(400).send({Error: err})
+                .then(comments => {
+                    Users.findById(comment.userId, 'username')
+                        .then(user => {
+                            Comments.username = username
+                        }).catch(err => {
+                            res.status(400).send({ Error: err })
+                        })
+                }).catch(err => {
+                    res.status(400).send({ Error: err })
+                })
+        }).catch(err => {
+            res.status(400).send({ Error: err })
         })
 })
 
-router.comment('/api/comments', (req, res, next)=>{
+router.post('/api/comments', (req, res, next)=>{
     Comments.create(req.body)
         .then(comment => {
             let response = {

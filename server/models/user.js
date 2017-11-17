@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
-var ObjectId = Schema.Types.ObjectId
+var ObjectId = mongoose.SchemaTypes.ObjectId
 const SALT_FACTOR = 10
 
 var schema = new mongoose.Schema({
@@ -8,7 +8,7 @@ var schema = new mongoose.Schema({
   email: { type: String, required: true, unique: true, dropDups: true },
   password: { type: String, required: true },
   created: { type: Number, required: true, default: Date.now() },
-  favorites: [{ type: ObjectId, ref: 'Post' }],
+  favorites: [{ type: ObjectId, ref: 'Posting' }],
   upvotes: [{ type: ObjectId, ref: 'Comment' }]
 })
 
