@@ -2,26 +2,28 @@ function PostingsService() {
 
     var baseUrl = 'http://localhost:3000/api/postings'
 
-    var postings = [{
-        title: "hey this is cool",
-        img: 'http://placehold.it/200x200',
-        _id: 1
-    }, {
-        title: "hey this is cool",
-        img: 'http://placehold.it/200x200',
-        _id: 2
-    }, {
-        title: "hey this is cool",
-        img: 'http://placehold.it/200x200',
-        _id: 3
-    }, {
-        title: "hey this is cool",
-        img: 'http://placehold.it/200x200',
-        _id: 4
-    }]
+    var postings = []
+    //     {
+    //     title: "hey this is cool",
+    //     img: 'http://placehold.it/200x200',
+    //     _id: 1
+    // }, {
+    //     title: "hey this is cool",
+    //     img: 'http://placehold.it/200x200',
+    //     _id: 2
+    // }, {
+    //     title: "hey this is cool",
+    //     img: 'http://placehold.it/200x200',
+    //     _id: 3
+    // }, {
+    //     title: "hey this is cool",
+    //     img: 'http://placehold.it/200x200',
+    //     _id: 4
+    // }
+
 
     function Posting(config) {
-        this.img = config.img.value
+        this.img = config.image.value
         this.title = config.title.value
         //user id will be grabbed by server.
     }
@@ -55,7 +57,7 @@ function PostingsService() {
     }
 
     this.addPosting = function addPosting(form, getPostings) {
-
+        debugger
         //need to create html form for new posting
 
 

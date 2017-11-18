@@ -64,7 +64,10 @@ function PostingsController() {
     this.addPosting = function addPosting(event) {
         //build form for this
       event.preventDefault()
-      var form = event.target
+      var form = {
+          title: event.target.title.value,
+          image: event.target.image.value
+      }
       postingsService.addPosting(form, getPostings)
     //   postingsFormElem.classList.toggle('hidden', true)
     //   document.getElementById('addPostingForm').reset()
