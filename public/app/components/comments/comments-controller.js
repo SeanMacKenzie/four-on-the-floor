@@ -26,7 +26,7 @@ function CommentsController() {
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-center">
                     <blockquote>
-                        <p>${comment.comment}</p>
+                        <p>${comment.comment}</p><button>Vote UP</button>
                     </blockquote>
                     <caption>${comment.userId}</caption>
                 </div>

@@ -2,30 +2,11 @@ function CommentsService() {
 
     var baseUrl = 'http://localhost:3000/api/comments'
 
-    var comments = [{
-        comment: 'this is a pretty cool picture',
-        upvotes: '13',
-        userId: 12,
-        _id: 3
-    }, {
-        comment: 'this is a pretty cool picture',
-        upvotes: '13',
-        userId: 13,
-        _id: 4
-    }, {
-        comment: 'this is a pretty cool picture',
-        upvotes: '13',
-        userId: 14,
-        _id: 5
-    }, {
-        comment: 'this is a pretty cool picture',
-        upvotes: '13',
-        userId: 15,
-        _id: 6
-    }]
+    var comments = []
+       
 
     function Comment(config) {
-        this.comment = config.comment.value
+        this.comment = config.song-response.value
         //user id will be grabbed by server.
     }
 
@@ -64,7 +45,7 @@ function CommentsService() {
 
         var newComment = new Comment(form)
         $.post(baseUrl, newComment)
-            .then(getComments)
+            .then(getComments())
             .fail(logError)
     }
     this.removeComment = function removeComment(id, getComments) {
