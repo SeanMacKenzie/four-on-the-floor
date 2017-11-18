@@ -1,6 +1,6 @@
 function PostingsService() {
 
-    // var baseUrl = 'http://localhost:3000/api/postings'
+    var baseUrl = 'http://localhost:3000/api/postings'
 
     var postings = [{
         title: "hey this is cool",
