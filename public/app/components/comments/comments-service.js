@@ -1,4 +1,4 @@
-import { basename } from "path";
+
 
 function CommentsService() {
 
@@ -19,7 +19,7 @@ function CommentsService() {
     // PUBLIC?
     this.getComments = function getComments(id, cb) {
         if (!cb || typeof cb != 'function') { console.error('you need a callback') }
-        $.get('http://localhost:3000/api/postings/:postingId/comments')
+        $.get(`http://localhost:3000/api/postings/${id}/comments`)
             .then(res => {
                 comments = res
                 console.log(comments)
@@ -58,7 +58,7 @@ function CommentsService() {
 
         var newComment = new Comment(form, postingId)
         $.post(baseUrl, newComment)
-            .then(getComms())
+            .then(getComms(postingId))
             .fail(logError)
     }
     this.removeComment = function removeComment(id, getComms) {
