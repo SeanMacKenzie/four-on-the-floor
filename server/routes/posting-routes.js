@@ -40,6 +40,7 @@ router.get('/api/postings/:id', (req, res, next) => {
 
 
 router.post('/api/postings', (req, res, next) => {
+   req.body.userId = req.session.uid
     Postings.create(req.body)
         .then(posting => {
             if (posting.userId.toString() == req.session.uid) {
