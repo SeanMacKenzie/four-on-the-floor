@@ -14,24 +14,30 @@ router.get('/api/postings', (req, res, next) => {
         })
 })
 
+
+
+// router.get('/api/postings/:id', (req, res, next)=>{
+//     Postings.findById(req.params.id)
+//         .then(posting=>{
+//             res.send(posting)
+//         })
+//         .catch(err =>{
+//             res.status(400).send({Error: err})
+//         })
+// })
 router.get('/api/postings/:id', (req, res, next) => {
     Postings.findById(req.params.id)
         .then(posting => {
-            res.send(posting)
-                .then(postings => {
-                    Users.findById(posting.userId, 'username')
-                        .then(user => {
-                            Postings.username = username
-                        }).catch(err => {
-                            res.status(400).send({ Error: err })
-                        })
-                }).catch(err => {
-                    res.status(400).send({ Error: err })
+            Users.findById(posting.userId, 'username')
+                .then(user => {
+                    posting.userId = user
+                    res.send(posting)
                 })
         }).catch(err => {
             res.status(400).send({ Error: err })
         })
 })
+
 
 router.post('/api/postings', (req, res, next) => {
     Postings.create(req.body)
