@@ -14,24 +14,30 @@ router.get('/api/postings', (req, res, next) => {
         })
 })
 
+
+
+// router.get('/api/postings/:id', (req, res, next)=>{
+//     Postings.findById(req.params.id)
+//         .then(posting=>{
+//             res.send(posting)
+//         })
+//         .catch(err =>{
+//             res.status(400).send({Error: err})
+//         })
+// })
 router.get('/api/postings/:id', (req, res, next) => {
     Postings.findById(req.params.id)
         .then(posting => {
-            res.send(posting)
-                .then(postings => {
-                    Users.findById(posting.userId, 'username')
-                        .then(user => {
-                            Postings.username = username
-                        }).catch(err => {
-                            res.status(400).send({ Error: err })
-                        })
-                }).catch(err => {
-                    res.status(400).send({ Error: err })
+            Users.findById(posting.userId)
+                .then(user => {
+                    posting.userId = user.username
+                    res.send(posting)
                 })
         }).catch(err => {
             res.status(400).send({ Error: err })
         })
 })
+
 
 router.post('/api/postings', (req, res, next) => {
     Postings.create(req.body)
@@ -50,13 +56,13 @@ router.post('/api/postings', (req, res, next) => {
         })
 })
 //USER POSTS
-router.get('/api/users/:userId/postings', (req, res, next)=>{
-    Postings.find({postingId:req.params.postingId})
-        .then(postings =>{
+router.get('/api/users/:userId/postings', (req, res, next) => {
+    Postings.find({ postingId: req.params.postingId })
+        .then(postings => {
             res.send(postings)
         })
-        .catch(err =>{
-            res.status(400).send({Error: err})
+        .catch(err => {
+            res.status(400).send({ Error: err })
         })
 })
 
@@ -85,7 +91,7 @@ router.delete('/api/postings/:id', (req, res, next) => {
         .catch(err => {
             res.status(400).send({ Error: err })
         })
-   
+
 
 
 })
