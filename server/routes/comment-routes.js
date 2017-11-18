@@ -40,18 +40,33 @@ router.get('/api/comments/:id', (req, res, next) => {
         })
 })
 
-router.post('/api/comments', (req, res, next)=>{
-    Comments.create(req.body)
-        .then(comment => {
-            let response = {
-                data: comment,
-                message: 'Successfully created Comment!'
-            }
-            res.send(response)
-        })
-        .catch(err =>{
-            res.status(400).send({Error: err})
-        })
+// router.post('/api/comments', (req, res, next)=>{
+//     Comments.create(req.body)
+//         .then(comment => {
+//             let response = {
+//                 data: comment,
+//                 message: 'Successfully created Comment!'
+//             }
+//             res.send(response)
+//         })
+//         .catch(err =>{
+//             res.status(400).send({Error: err})
+//         })
+// })
+
+router.post('/api/comments', (req, res, next) => {
+    if (req.session.uid) {
+        req.body.userId = req.session.uid.toString()
+        Comments.create(req.body)
+            .then(posting => {
+                res.send({ data: comment, message: 'Successfully created Comment!' })
+            })
+            .catch(err => {
+                res.status(400).send({ Error: err })
+            })
+    } else {
+        res.send({ message: 'Please log in' })
+    }
 })
 
 
