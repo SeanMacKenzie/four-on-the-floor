@@ -25,7 +25,7 @@ function PostingsController() {
         template += `
             <div class="row">
                 <div class="col-xs-4">
-                    <img onclick="app.controllers.postingsController.getPosting(${posting._id})" src="${posting.img}">
+                    <img class="postings-image" onclick="app.controllers.postingsController.getPosting(${posting._id});app.controllers.commentsController.getComments(${posting._id})" src="${posting.img}">
                 </div>
                 <div class="col-xs-8 text-center">
                     <h4>${posting.title}</h4>
@@ -46,8 +46,8 @@ function PostingsController() {
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-10 col-xs-offset-1">
-                <img src="${posting.img}">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+                <img class="posting-image" src="${posting.img}">
             </div>
         </div>
         `
