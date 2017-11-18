@@ -21,10 +21,10 @@ server.use(sessions)
 
 ///register routes
 server.use(userRoutes)
-server.use(postingRoutes)
-server.use(commentRoutes)
 
 server.use(Authenticate)
+server.use(postingRoutes)
+server.use(commentRoutes)
 
 function Authenticate(req,res,next){
     if(!req.session.uid){
