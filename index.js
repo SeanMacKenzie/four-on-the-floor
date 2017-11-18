@@ -6,6 +6,7 @@ var sessions = require('./auth/sessions')
 var port = 3000
 
 //route variables
+var usertwoRoutes = require('./server/routes/user-routes')
 var userRoutes = require('./auth/auth')
 var postingRoutes = require('./server/routes/posting-routes')
 var commentRoutes = require('./server/routes/comment-routes')
@@ -25,7 +26,7 @@ server.use(userRoutes)
 server.use(Authenticate)
 server.use(postingRoutes)
 server.use(commentRoutes)
-
+server.use(usertwoRoutes)
 function Authenticate(req,res,next){
     if(!req.session.uid){
         return res.status(401).send({error: 'You must login to continue'})

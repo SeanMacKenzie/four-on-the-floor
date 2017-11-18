@@ -33,12 +33,12 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="nav-bar">
-                        <form class="navbar-form navbar-left" onsubmit="app.controllers.authController.login(event)">
+                        <!-- <form class="navbar-form navbar-left" onsubmit="app.controllers.authController.login(event)">
                             <input type="email" name="email" placeholder="Email">
                             <input type="password" name="password" placeholder="Password">
                             <button type="submit" class="btn btn-default">Log In</button>
+                            <button onclick="app.controllers.authController.register()" class="btn btn-default" type="button">Register</button>
                         </form>
-                        <button class="btn btn-default" type="button">Register</button>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
                                 <a id="dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
@@ -56,7 +56,7 @@
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <!-- /.navbar-collapse -->
                 </div>
@@ -66,7 +66,7 @@
             <!-- register page -->
             <div id="reg-form" class="row hidden">
                 <div id="register" class="col-xs-8 register ">
-                    <form id="registration" class="form" onsubmit="">
+                    <form id="registration" class="form" onsubmit="app.controllers.authController.registration(event)">
                         <div class="form-group">
                             <label for="email">Email:</label>
                             <input type="text" name="email" class="form-control" placeholder="Email" required>
@@ -143,7 +143,12 @@
 
 
 -->
+<<<<<<< HEAD
 <div id = "profiles" class="div"></div>
+=======
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+>>>>>>> 25be42af27c323dcd94e479336fe0c35af32cae5
 
         <script src="app/components/postings/postings-service.js"></script>
         <script src="app/components/comments/comments-service.js"></script>
