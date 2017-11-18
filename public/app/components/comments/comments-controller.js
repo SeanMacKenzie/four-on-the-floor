@@ -39,8 +39,8 @@ function CommentsController() {
 
 
     this.addComment = function addComment(event) {
-        //build form for this
       event.preventDefault()
+      
       var form = event.target
       commentsService.addComment(form, getComments)
     //   commentsFormElem.classList.toggle('hidden', true)
