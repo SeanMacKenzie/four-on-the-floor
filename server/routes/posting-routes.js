@@ -28,9 +28,9 @@ router.get('/api/postings', (req, res, next) => {
 router.get('/api/postings/:id', (req, res, next) => {
     Postings.findById(req.params.id)
         .then(posting => {
-            Users.findById(posting.userId)
+            Users.findById(posting.userId, 'username')
                 .then(user => {
-                    posting.userId = user.username
+                    posting.userId = user
                     res.send(posting)
                 })
         }).catch(err => {
