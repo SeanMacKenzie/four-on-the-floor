@@ -20,11 +20,11 @@ server.use(bp.urlencoded({extended: true}))
 server.use(sessions)
 
 ///register routes
-server.use(postingRoutes)
-server.use(Authenticate)
 server.use(userRoutes)
-server.use(commentRoutes)
 
+server.use(Authenticate)
+server.use(postingRoutes)
+server.use(commentRoutes)
 
 function Authenticate(req,res,next){
     if(!req.session.uid){
@@ -34,5 +34,5 @@ function Authenticate(req,res,next){
 }
 
 server.listen(port, function(){
-    console.log('Serving burgers on port: ', port)
+    console.log('Ready to rock on port: ', port)
 })

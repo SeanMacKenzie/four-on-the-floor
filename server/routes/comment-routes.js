@@ -12,7 +12,15 @@ router.get('/api/comments', (req, res, next)=>{
             res.status(400).send({Error: err})
         })
 })
-
+router.get('/api/postings/:postingId/comments', (req, res, next)=>{
+    Comments.find({postingId:req.params.postingId})
+        .then(comments =>{
+            res.send(comments)
+        })
+        .catch(err =>{
+            res.status(400).send({Error: err})
+        })
+})
 router.get('/api/comments/:id', (req, res, next) => {
     Comments.findById(req.params.id)
         .then(comment => {
