@@ -36,11 +36,14 @@ router.get('/api/postings/:id', (req, res, next) => {
 router.post('/api/postings', (req, res, next) => {
     Postings.create(req.body)
         .then(posting => {
-            let response = {
-                data: posting,
-                message: 'Successfully created Posting!'
+            if (posting.userId.toString() == req.session.uid) {
+
+                let response = {
+                    data: posting,
+                    message: 'Successfully created Posting!'
+                }
+                res.send(response)
             }
-            res.send(response)
         })
         .catch(err => {
             res.status(400).send({ Error: err })
