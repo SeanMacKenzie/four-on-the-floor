@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,113 +8,123 @@
     <title>Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<body>
+    <link rel="stylesheet" href="assets/style.css">
 
-    <div class="container">
-        
-        <!-- header -->
-        <div class="row">
-            <div class="col-xs-12 text-center">
+    <body>
 
-                <h1><em>Note</em> to Self</h1>
+        <div class="container">
+
+            <!-- header -->
+            <div class="row">
+                <div class="col-xs-12 text-center">
+
+                    <h1>
+                        <em>Note</em> to Self</h1>
+                </div>
             </div>
-        </div>
-        <!-- navbar -->
+            <!-- navbar -->
             <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                      <!-- Brand and toggle get grouped for better mobile display -->
-                      <div class="navbar-header">
-                        
-        
-                      </div>
-                  
-                      <!-- Collect the nav links, forms, and other content for toggling -->
-                      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        
-                        <form class="navbar-form navbar-left">
-                          <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Email">
-                            <input type="text" class="form-control" placeholder="Password">
-                          </div>
-                          <button type="submit" class="btn btn-default">Log In</button>
-                          <button  onClick=""class="btn btn-default" type="button">Register</button>
-                        </form>
-                        <ul class="nav navbar-nav navbar-right">
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="#">Home</a></li>
-                              <li><a href="#">Profile Page</a></li>
-                              <li><a href="#">Favorites</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                  </nav>
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
 
-                  <!-- register page -->
-        <div id="reg-form" class="row hidden">
-            <div  id="register" class="col-xs-8 register ">
-                    <form id="registration"class="form" onsubmit="">
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="text" name="email" class="form-control" placeholder="Email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="displayName">Display Name:</label>
-                                <input type="text" name="displayName" class="form-control" placeholder="display name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="text" name="password" class="form-control" placeholder="password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="reEnterPassword">Re-enter Password:</label>
-                                <input type="text" name="reEnterPassword" class="form-control" placeholder="reEnterPassword">
-                            </div>
-                       
-                            <div class="form-group">
-                                <button class="btn btn-success" type="submit">Complete Registration</button>
-                            </div>
+
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="nav-bar">
+                        <form class="navbar-form navbar-left" onsubmit="app.controllers.authController.login(event)">
+                            <input type="email" name="email" placeholder="Email">
+                            <input type="password" name="password" placeholder="Password">
+                            <button type="submit" class="btn btn-default">Log In</button>
                         </form>
+                        <button class="btn btn-default" type="button">Register</button>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a id="dropdown" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Profile Page</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Favorites</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+            <!-- register page -->
+            <div id="reg-form" class="row hidden">
+                <div id="register" class="col-xs-8 register ">
+                    <form id="registration" class="form" onsubmit="">
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" class="form-control" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="displayName">Display Name:</label>
+                            <input type="text" name="displayName" class="form-control" placeholder="display name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="text" name="password" class="form-control" placeholder="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reEnterPassword">Re-enter Password:</label>
+                            <input type="text" name="reEnterPassword" class="form-control" placeholder="reEnterPassword">
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-success" type="submit">Complete Registration</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <!-- ADD POSTING -->
+            <form id="addPostingForm" class="form hidden" onsubmit="app.controllers.postingController.addPosting(event)">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" class="form-control" placeholder="Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="text" name="image" class="form-control" placeholder="Image-URL">
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Add Posting</button>
+                </div>
+            </form>
+
+            <div id="postings">
+
+            </div>
+            <div id="posting-page">
+                <div id="posting">
+
+                </div>
+                <div id="comments"></div>
             </div>
         </div>
-
-
-<!-- ADD POSTING -->
-<form id="addPostingForm"class="form hidden" onsubmit="app.controllers.postingController.addPosting(event)">
-        <div class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" name="title" class="form-control" placeholder="Title" required>
-        </div>
-        <div class="form-group">
-            <label for="image">Image:</label>
-            <input type="text" name="image" class="form-control" placeholder="Image-URL">
-        </div>
-        
-        <div class="form-group">
-            <button class="btn btn-success" type="submit">Add Posting</button>
-        </div>
-    </form>
-
-    <div id="postings">
-
-    </div>
-    <div id="posting-page">
-        <div id="posting">
-            
-        </div>
-        <div id="comments"></div>   
-    </div>
-</div>
-<!-- NAV BAR
+        <!-- NAV BAR
     left side, 2 input fields for un and pass
     right side, name of the site "some name"
 -->
-<!-- side menu bar, has Home button, Profile button, Favorites button with onClicks -->
+        <!-- side menu bar, has Home button, Profile button, Favorites button with onClicks -->
 
-<!-- login/register 
+        <!-- login/register 
     two text inputs in nav bar for existing users in navbar
     on submit, getrequest from server
     on login takes to posts pages.
@@ -128,19 +139,24 @@
 
 -->
 
-<!-- Profile page
+        <!-- Profile page
 
 
 
 
 -->
 
-    
 
-    <script src="app/controllers/postings-service.js"></script>
-    
-    <script src="app/controllers/postings-controller.js"></script>
-    
-    <script src="init.js"></script>
-</body>
+
+        <script src="app/components/postings/postings-service.js"></script>
+        <script src="app/components/comments/comments-service.js"></script>
+        <script src="app/components/auth/auth-service.js"></script>
+
+        <script src="app/components/postings/postings-controller.js"></script>
+        <script src="app/components/comments/comments-controller.js"></script>
+        <script src="app/components/auth/auth-controller.js"></script>
+
+        <script src="init.js"></script>
+    </body>
+
 </html>
