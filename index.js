@@ -16,6 +16,7 @@ var homeRoutes = require('./server/routes/home-routes')
 
 
 //register Middleware
+server.use(express.static(__dirname + '/public'))
 server.use(bp.json())
 server.use(bp.urlencoded({extended: true}))
 server.use(sessions)
