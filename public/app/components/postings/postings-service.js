@@ -23,6 +23,7 @@ function PostingsService() {
 
 
     function Posting(config) {
+        
         this.img = config.image.value
         this.title = config.title.value
         //user id will be grabbed by server.
