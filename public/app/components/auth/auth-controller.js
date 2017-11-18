@@ -9,12 +9,12 @@ function AuthController() {
             email: event.target.email.value,
             password: event.target.password.value
         }
-
+        console.log(loginData)
         authService.login(loginData, drawNav)
     }
 
-    function drawNav(user) {
-        if(user._id){
+    function drawNav(res) {
+        if(res.data){
             document.getElementById('nav-bar').innerHTML = `
                                     <form class="navbar-form navbar-left" onsubmit="app.controllers.authController.login(event)">
                                     <button class="btn btn-default" type="button">Register</button>         
@@ -77,10 +77,9 @@ function AuthController() {
         document.getElementById('reg-form').classList.toggle('hidden')
     }
 
-
     this.registration = function registration(event) {
+        event.preventDefault()
         if (event.target.password.value != event.target.reEnterPassword.value) {
-            event.preventDefault()
             console.log('please re-enter password')
         } else {
             var registerData = {
@@ -96,7 +95,7 @@ function AuthController() {
 
 
 
-    authService.authenticate()
+    authService.authenticate(drawNav)
 
 
 
