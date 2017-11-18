@@ -3,6 +3,13 @@ var Postings = require('../models/posting')
 var router = require('express').Router()
 var Users = require('../models/user')
 
+router.delete('/api/postings/:id', (req, res) => {
+    Postings.findOneAndRemove({_id: req.params.id, userId: req.session.uid })
+        .then(() => res.send({ message: 'Its gone' }))
+        .catch(err => res.status(401).send(err))
+   
+
+})
 
 router.get('/api/postings', (req, res, next) => {
     Postings.find({})
@@ -41,30 +48,18 @@ router.get('/api/postings/:id', (req, res, next) => {
 
 
 router.post('/api/postings', (req, res, next) => {
-   req.body.userId = req.session.uid
-   Postings.create(req.body)
-   .then(posting => {
-       if (posting.userId.toString() == req.session.uid) {
-           
-           console.log(req.body)
-                let response = {
-                    data: posting,
-                    message: 'Successfully created Posting!'
-                }
-
-            }
-            else {
-                let response = {
-                    data: posting,
-                    message: 'You were unable to create a post. Please log in.'
-                }
-            }
-            res.send(response)
-        
-        })
-    .catch(err => {
-        res.status(400).send({ Error: err })
-    })
+    if (req.session.uid) {
+        req.body.userId = req.session.uid.toString()
+        Postings.create(req.body)
+            .then(posting => {
+                res.send({ data: posting, message: 'Successfully created Posting!' })
+            })
+            .catch(err => {
+                res.status(400).send({ Error: err })
+            })
+    } else {
+        res.send({ message: 'Please log in' })
+    }
 })
 //USER POSTS
 router.get('/api/users/:userId/postings', (req, res, next) => {
@@ -88,26 +83,6 @@ router.put('/api/postings/:id', (req, res, next) => {
         })
 })
 
-
-router.delete('/api/postings/:id', (req, res, next) => {
-    //if broken, userId.toString()
-    // req.body.userId = req.session.uid
-    Postings.findById(req.params.id)
-    .then(posting => {
-        if (posting.userId.toString() == req.session.uid) {
-            console.log("delete me!", posting)
-                posting.remove()
-                res.send({ message: 'So much for that posting' })
-            }
-            next()
-        })
-        .catch(err => {
-            res.status(400).send({ Error: err })
-        })
-
-
-
-})
 
 function handleResponse(action, data, error) {
     var response = {
