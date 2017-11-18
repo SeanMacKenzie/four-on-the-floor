@@ -1,3 +1,5 @@
+import { basename } from "path";
+
 function CommentsService() {
 
     var baseUrl = 'http://localhost:3000/api/comments'
@@ -45,7 +47,19 @@ function CommentsService() {
         return comments
         cb(comments)
     }
-
+    this.setVote = (data, getComments) => {
+        var options = [-1,0,1]
+        if(options.includes(data.value)){
+            var obj = {
+                commentId : data.commentId,
+                vote: data.vote,
+                userId : data.userId
+            }
+            $.put(baseUrl + `/${data.commentId}/votes`, obj)
+            .then(getComments)
+            .fail(logError)
+        }
+    }
     this.getComment = function getComment(id, cb) {
         var comment = {}
         for (var i = 0; i < comments.length; i++) {
