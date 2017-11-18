@@ -25,7 +25,7 @@ function PostingsController() {
         template += `
             <div class="row">
                 <div class="col-xs-4">
-                    <img class="postings-image" onclick="app.controllers.postingsController.getPosting(${posting._id});app.controllers.commentsController.getComments(${posting._id})" src="${posting.img}">
+                    <img class="postings-image" onclick="app.controllers.postingsController.getPosting('${posting._id}');app.controllers.commentsController.getComments('${posting._id}')" src="${posting.img}">
                 </div>
                 <div class="col-xs-8 text-center">
                     <h4>${posting.title}</h4>
@@ -51,6 +51,12 @@ function PostingsController() {
                 <img class="posting-image" src="${posting.img}">
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <button class="btn btn-default">Add Comment</button>
+            </div>
+        </div>
+            
         `
 
         document.getElementById('posting').innerHTML = template
