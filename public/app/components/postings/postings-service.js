@@ -32,14 +32,14 @@ function logError(err){
 // PUBLIC?
 this.getPostings = function getPostings(cb){
     if(!cb || typeof cb != 'function'){console.error('you need a callback')}
-    // $.get(baseUrl)
-    //     .then(res =>{
-    //         postings = res
-    //         console.log(postings)
-    //         cb(postings)
-    //     })
-    //     .fail(logError)
-    // return postings
+    $.get(baseUrl)
+        .then(res =>{
+            postings = res
+            console.log(postings)
+            cb(postings)
+        })
+        .fail(logError)
+    return postings
     cb(postings)
 }
 
@@ -60,18 +60,18 @@ this.addPosting = function addPosting(form, getPostings){
 
 
     var newPosting = new Posting(form)
-    // $.post(baseUrl, newPosting)
-    //     .then(getPostings)
-    //     .fail(logError)
+    $.post(baseUrl, newPosting)
+        .then(getPostings)
+        .fail(logError)
 }
 this.removePosting = function removePosting(id, getPostings){
 
-    // $.ajax({
-    //     url: baseUrl + '/' + id,
-    //     method: 'DELETE'
-    // })
-    // .then(getPostings)
-    // .fail(logError)
+    $.ajax({
+        url: baseUrl + '/' + id,
+        method: 'DELETE'
+    })
+    .then(getPostings)
+    .fail(logError)
 }
 
 
