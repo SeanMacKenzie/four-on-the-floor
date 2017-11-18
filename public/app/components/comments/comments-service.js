@@ -51,17 +51,17 @@ function CommentsService() {
         cb(comment)
     }
 
-    this.addComment = function addComment(form, postingId, getComments) {
+    this.addComment = function addComment(form, postingId, getComms) {
 
         //need to create html form for new comment
 
 
         var newComment = new Comment(form, postingId)
         $.post(baseUrl, newComment)
-            .then(getComments())
+            .then(getComms())
             .fail(logError)
     }
-    this.removeComment = function removeComment(id, getComments) {
+    this.removeComment = function removeComment(id, getComms) {
 
         $.ajax({
             url: baseUrl + '/' + id,

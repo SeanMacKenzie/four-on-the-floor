@@ -9,10 +9,11 @@ function CommentsController() {
     // Filter / Search
    var postingId = ''
   
-    this.getComments = function getComments(id){
+    function getComms(id){
     
       commentsService.getComments(id, drawComments)
     }
+    this.getComments = getComms
 
     var commentsElem = document.getElementById('comments')
     
@@ -47,7 +48,7 @@ function CommentsController() {
       event.preventDefault()
       debugger
       var form = event.target
-      commentsService.addComment(form, postingId, getComments)
+      commentsService.addComment(form, postingId, getComms)
     //   commentsFormElem.classList.toggle('hidden', true)
     //   document.getElementById('addCommentForm').reset()
     //   this.showAddCommentForm()
