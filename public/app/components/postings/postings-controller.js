@@ -29,6 +29,7 @@ function PostingsController() {
                 </div>
                 <div class="col-xs-8 text-center">
                     <h4>${posting.title}</h4>
+                    <button onclick="app.controllers.postingsController.removePosting('${posting._id}')">delete</button>
                 </div>
             </div>
               `
@@ -64,10 +65,7 @@ function PostingsController() {
     this.addPosting = function addPosting(event) {
         //build form for this
       event.preventDefault()
-      var form = {
-          title: event.target.title.value,
-          image: event.target.image.value
-      }
+      var form = event.target
       postingsService.addPosting(form, getPostings)
     //   postingsFormElem.classList.toggle('hidden', true)
     //   document.getElementById('addPostingForm').reset()

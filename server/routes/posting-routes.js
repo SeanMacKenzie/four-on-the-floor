@@ -28,6 +28,7 @@ router.get('/api/postings', (req, res, next) => {
 router.get('/api/postings/:id', (req, res, next) => {
     Postings.findById(req.params.id)
         .then(posting => {
+            console.log(posting)
             Users.findById(posting.userId, 'username')
                 .then(user => {
                     posting.userId = user
@@ -41,9 +42,11 @@ router.get('/api/postings/:id', (req, res, next) => {
 
 router.post('/api/postings', (req, res, next) => {
    req.body.userId = req.session.uid
-    Postings.create(req.body)
-        .then(posting => {
-            if (posting.userId.toString() == req.session.uid) {
+   Postings.create(req.body)
+   .then(posting => {
+       if (posting.userId.toString() == req.session.uid) {
+           
+           console.log(req.body)
                 let response = {
                     data: posting,
                     message: 'Successfully created Posting!'
@@ -88,9 +91,11 @@ router.put('/api/postings/:id', (req, res, next) => {
 
 router.delete('/api/postings/:id', (req, res, next) => {
     //if broken, userId.toString()
+    // req.body.userId = req.session.uid
     Postings.findById(req.params.id)
-        .then(posting => {
-            if (posting.userId.toString() == req.session.uid) {
+    .then(posting => {
+        if (posting.userId.toString() == req.session.uid) {
+            console.log("delete me!", posting)
                 posting.remove()
                 res.send({ message: 'So much for that posting' })
             }

@@ -23,7 +23,7 @@ function PostingsService() {
 
 
     function Posting(config) {
-        
+
         this.img = config.image.value
         this.title = config.title.value
         //user id will be grabbed by server.
@@ -58,13 +58,12 @@ function PostingsService() {
     }
 
     this.addPosting = function addPosting(form, getPostings) {
-        debugger
+        
         //need to create html form for new posting
-
 
         var newPosting = new Posting(form)
         $.post(baseUrl, newPosting)
-            .then(getPostings)
+            .then(getPostings())
             .fail(logError)
     }
     this.removePosting = function removePosting(id, getPostings) {
