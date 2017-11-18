@@ -43,17 +43,24 @@ router.post('/api/postings', (req, res, next) => {
     Postings.create(req.body)
         .then(posting => {
             if (posting.userId.toString() == req.session.uid) {
-
                 let response = {
                     data: posting,
                     message: 'Successfully created Posting!'
                 }
-                res.send(response)
+
             }
+            else {
+                let response = {
+                    data: posting,
+                    message: 'You were unable to create a post. Please log in.'
+                }
+            }
+            res.send(response)
+        
         })
-        .catch(err => {
-            res.status(400).send({ Error: err })
-        })
+    .catch(err => {
+        res.status(400).send({ Error: err })
+    })
 })
 //USER POSTS
 router.get('/api/users/:userId/postings', (req, res, next) => {
