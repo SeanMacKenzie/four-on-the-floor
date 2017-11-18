@@ -26,7 +26,9 @@ function CommentsController() {
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-center">
                     <blockquote>
-                        <p>${comment.comment}</p><button>Vote UP</button>
+                        <p>${comment.comment}</p>
+                        <button onclick="app.controllers.commentsController.setVote('up', ${comment._id})">Vote UP</button>
+                        <button onclick="app.controllers.commentsController.setVote('down', ${comment._id})">Vote DOWN</button>
                     </blockquote>
                     <caption>${comment.userId}</caption>
                 </div>
@@ -51,7 +53,13 @@ function CommentsController() {
     this.removeComment = function removeComment(id){
       commentsService.removeComment(id, getComments)
     }
-  
+    this.setVote = (vote, commentId) => {
+      var data = {
+        vote : vote,
+        commentId : commentId
+      }
+      commentsService.setVote(data)
+    }
     
     var formstate = false
     this.showAddCommentForm = function showAddCommentForm() {

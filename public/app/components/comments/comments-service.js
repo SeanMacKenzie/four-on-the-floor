@@ -28,16 +28,14 @@ function CommentsService() {
         return comments
         cb(comments)
     }
-    this.setVote = (data, getComments) => {
-        var options = [-1,0,1]
-        if(options.includes(data.value)){
-            var obj = {
-                commentId : data.commentId,
-                vote: data.vote,
-                userId : data.userId
-            }
-            $.put(baseUrl + `/${data.commentId}/votes`, obj)
-            .then(getComments)
+    this.setVote = (data) => {
+        var options = {
+            up : 1,
+            down : -1
+        }
+        if(options[data.vote]){
+            $.put(baseUrl + `/${data.commentId}/votes`, data.vote)
+            //.then(getComments)
             .fail(logError)
         }
     }
