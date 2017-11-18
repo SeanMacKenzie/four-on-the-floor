@@ -7,11 +7,11 @@ function CommentsController() {
     // Report Flag
     // View More
     // Filter / Search
-   
+   var postingId = ''
   
-    this.getComments = function getComments(){
+    this.getComments = function getComments(id){
     
-      commentsService.getComments(drawComments)
+      commentsService.getComments(id, drawComments)
     }
 
     var commentsElem = document.getElementById('comments')
@@ -36,13 +36,16 @@ function CommentsController() {
       commentsElem.innerHTML = template
     }
 
+    this.addCommentForm = function addCommentForm(id){
+      postingId = id
 
+    }
 
     this.addComment = function addComment(event) {
       event.preventDefault()
-      
+      debugger
       var form = event.target
-      commentsService.addComment(form, getComments)
+      commentsService.addComment(form, postingId, getComments)
     //   commentsFormElem.classList.toggle('hidden', true)
     //   document.getElementById('addCommentForm').reset()
     //   this.showAddCommentForm()

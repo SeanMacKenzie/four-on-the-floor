@@ -5,8 +5,9 @@ function CommentsService() {
     var comments = []
        
 
-    function Comment(config) {
-        this.comment = config.song-response.value
+    function Comment(config, postingId) {
+        this.postingId = postingId
+        this.comment = config.songResponse.value
         //user id will be grabbed by server.
     }
 
@@ -14,9 +15,9 @@ function CommentsService() {
         console.log(err)
     }
     // PUBLIC?
-    this.getComments = function getComments(cb) {
+    this.getComments = function getComments(id, cb) {
         if (!cb || typeof cb != 'function') { console.error('you need a callback') }
-        $.get(baseUrl)
+        $.get('http://localhost:3000/api/postings/:postingId/comments')
             .then(res => {
                 comments = res
                 console.log(comments)
@@ -38,12 +39,12 @@ function CommentsService() {
         cb(comment)
     }
 
-    this.addComment = function addComment(form, getComments) {
+    this.addComment = function addComment(form, postingId, getComments) {
 
         //need to create html form for new comment
 
 
-        var newComment = new Comment(form)
+        var newComment = new Comment(form, postingId)
         $.post(baseUrl, newComment)
             .then(getComments())
             .fail(logError)
