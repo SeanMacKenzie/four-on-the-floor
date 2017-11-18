@@ -17,7 +17,7 @@ function AuthController() {
         if(res.data){
             document.getElementById('nav-bar').innerHTML = `
                                     <form class="navbar-form navbar-left" onsubmit="app.controllers.authController.login(event)">
-                                    <button class="btn btn-default" type="button">Register</button>         
+                                    <button onclick="app.controllers.authController.logout()" class="btn btn-default" type="button">Logout</button>         
                                     </form>
                                     <ul class="nav navbar-nav navbar-right">
                                         <li class="dropdown">
@@ -91,6 +91,9 @@ function AuthController() {
             authService.registration(registerData, drawNav)
         }   
 
+    }
+    this.logout = function logout(){
+        authService.logout(drawNav)
     }
 
 

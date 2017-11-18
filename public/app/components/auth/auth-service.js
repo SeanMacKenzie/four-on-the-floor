@@ -27,8 +27,8 @@ function AuthService() {
     this.authenticate = function authenticate(cb) {
         $.get(baseUrl + 'authenticate')
             .then(res => {
+                console.log("authenticated: ",res)
                 cb(res)
-                console.log(res)
             })
             .fail(logError)
     }
@@ -41,6 +41,7 @@ function AuthService() {
             .then(res => {
 
                 user = {}
+                console.log("logout:", res)
                 cb(user)
             })
             .fail(logError)
