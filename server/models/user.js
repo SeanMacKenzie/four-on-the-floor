@@ -12,6 +12,14 @@ var schema = new mongoose.Schema({
   upvotes: [{ type: ObjectId, ref: 'Comment' }]
 })
 
+schema.pre('get', function (next){
+  var user = this; 
+if(user.favorites > 0){
+  
+}
+next()
+})
+
 schema.pre('save', function (next) {
   var user = this;
   if (!user.isModified('password')) { // if the user is not changing their password or being created
