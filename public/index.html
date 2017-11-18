@@ -115,7 +115,24 @@
                 <div id="posting">
 
                 </div>
-                <div id="comments"></div>
+                <div id="comments">
+                        <form id="addPostingForm" class="form " onsubmit="app.controllers.postingsController.addComment(event)">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input type="text" name="name" class="form-control" placeholder="User Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="song-response">Song Response:</label>
+                                    <input type="text" name="song-response" class="form-control" placeholder="Lyrics/Song-title">
+                                </div>
+                
+                                <div class="form-group">
+                                    <button class="btn btn-success" type="submit">Add Comment</button>
+                                </div>
+                            </form>
+
+                </div>
+
             </div>
         </div>
         <!-- NAV BAR

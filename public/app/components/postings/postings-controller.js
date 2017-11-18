@@ -53,7 +53,7 @@ function PostingsController() {
         </div>
         <div class="row">
             <div class="col-xs-12 text-center">
-                <button class="btn btn-default">Add Comment</button>
+                <button onclick="app.controllers.commentsController.addCommentForm()"class="btn btn-default">Add Comment</button>
             </div>
         </div>
             
