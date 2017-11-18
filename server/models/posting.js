@@ -5,8 +5,6 @@ var Comments = require('./comment')
 var schema = new mongoose.Schema({
     img: { type: String, default: '//placehold.it/200x200' },
     title: { type: String, required: true },
-    userId: { type: ObjectId, required: true, ref: 'User' },
-
 });
 
 schema.pre('remove', () => {
