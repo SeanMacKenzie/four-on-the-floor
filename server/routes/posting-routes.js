@@ -49,7 +49,16 @@ router.post('/api/postings', (req, res, next) => {
             res.status(400).send({ Error: err })
         })
 })
-
+//USER POSTS
+router.get('/api/users/:userId/postings', (req, res, next)=>{
+    Postings.find({postingId:req.params.postingId})
+        .then(postings =>{
+            res.send(postings)
+        })
+        .catch(err =>{
+            res.status(400).send({Error: err})
+        })
+})
 
 router.put('/api/postings/:id', (req, res, next) => {
     var action = 'Update Posting'
