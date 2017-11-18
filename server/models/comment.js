@@ -4,7 +4,7 @@ var ObjectId = mongoose.SchemaTypes.ObjectId
 var schema = new mongoose.Schema({
     
     comment: { type: String, required: true },
-    upvotes: { type: Object },
+    votes: { type: Object },
     userId: { type: ObjectId, required: true, ref: 'User' },
     postingId: { type: ObjectId, required: true, ref: 'Posting'}
     
