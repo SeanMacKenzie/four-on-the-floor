@@ -28,8 +28,8 @@ function CommentsController() {
                 <div class="col-xs-8 col-xs-offset-2 text-center">
                     <blockquote>
                         <p>${comment.comment}</p>
-                        <button onclick="app.controllers.commentsController.setVote('up', ${comment._id})">Vote UP</button>
-                        <button onclick="app.controllers.commentsController.setVote('down', ${comment._id})">Vote DOWN</button>
+                        <button onclick="app.controllers.commentsController.setVote('up', '${comment._id}')">Vote UP</button>
+                        <button onclick="app.controllers.commentsController.setVote('down', '${comment._id}')">Vote DOWN</button>
                     </blockquote>
                     <caption>${comment.userId}</caption>
                 </div>

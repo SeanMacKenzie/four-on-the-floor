@@ -24,14 +24,10 @@ router.get('/api/postings/:postingId/comments', (req, res, next) => {
 router.get('/api/comments/:id', (req, res, next) => {
     Comments.findById(req.params.id)
         .then(comment => {
-            res.send(comment)
-                .then(comments => {
-                    Users.findById(comment.userId, 'username')
-                        .then(user => {
-                            Comments.username = username
-                        }).catch(err => {
-                            res.status(400).send({ Error: err })
-                        })
+            Users.findById(comment.userId, 'username')
+                .then(user => {
+                    Comments.userId = user
+                    res.send(comment)
                 }).catch(err => {
                     res.status(400).send({ Error: err })
                 })
@@ -57,6 +53,8 @@ router.get('/api/comments/:id', (req, res, next) => {
 router.post('/api/comments', (req, res, next) => {
     if (req.session.uid) {
         req.body.userId = req.session.uid.toString()
+        req.body.votes = {}
+        req.body.votes[req.session.uid.toString()] = 0
         Comments.create(req.body)
             .then(posting => {
                 res.send({ data: comment, message: 'Successfully created Comment!' })
@@ -69,17 +67,16 @@ router.post('/api/comments', (req, res, next) => {
     }
 })
 
-router.put('/api/comments/:id/votes', (req, res, next) => {
+router.put('/api/votes/comments/:id', (req, res, next) => {
     var action = 'Updates votes'
-    var userId = req.session.uid
-    Comments.findById(req.params.id)
+    Comments.findById({_id : req.params.id})
         .then(comment => {
-            var myVote = comment.votes[req.session.uid]
-            if (myVote == req.body) {
+            var myVote = comment.votes[req.session.uid.toString()]
+            if (myVote == req.body.data) {
                 comment.votes[userId] = 0
                 comment.save()
             } else {
-                comment.votes[userId] = req.body
+                comment.votes[userId] = req.body.data
                 comment.save()
             }
             res.send(comment, { message: 'Updated votes' })

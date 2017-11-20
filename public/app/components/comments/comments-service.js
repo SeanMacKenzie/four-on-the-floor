@@ -35,7 +35,12 @@ function CommentsService() {
             down : -1
         }
         if(options[data.vote]){
-            $.put(baseUrl + `/${data.commentId}/votes`, data.vote)
+            //$.post(`http://localhost:3000/api/votes/comments/${data.commentId}`, {data: options[data.vote]})
+            $.ajax({
+                url: `http://localhost:3000/api/votes/comments/${data.commentId}`,
+                method: 'PUT',
+                data: {data: options[data.vote]}
+            })
             //.then(getComments)
             .fail(logError)
         }
